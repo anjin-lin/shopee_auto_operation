@@ -63,7 +63,7 @@ Python  >= 3.5.1 Version
 |   Parameter1  | Parameter2 | Explain |
 |  ----  | ----  | ----  |
 | --account  | -a  | Account(账号)  |
-| --password  | -p | Password(账号)  |
+| --password  | -p | Password(密码)  |
 | --country  | -c | Country(国家站点)  |
 | --accounts  | -as | Multiple Account(多个账号信息)  |
 | --other  | -other | Other Info(其他信息)  |
