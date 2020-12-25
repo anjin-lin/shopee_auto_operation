@@ -22,6 +22,8 @@ import traceback
 
 api_log_name = "api"
 
+api_version = "4.7.0"
+
 
 # api日志
 def api_logger(api_path, api_name, msg, response: requests.Response = None, level=logging.INFO):

@@ -12,18 +12,18 @@ describe:
 """
 
 
-from . import api_url, SUCCESS_CODE, time_out, user_agent, requests, logging, api_logger, traceback, json
+from . import api_url, SUCCESS_CODE, time_out, user_agent, requests, api_logger, json, api_version
 
 
 # 发送消息
 def messages(data: dict, country, chat_login_info, cookies: dict = dict({})):
-    url = f"{api_url[country]}/webchat/api/v1.2/messages?_uid={chat_login_info['user']['uid']}&_v=4.7.0"
+    url = f"{api_url[country]}/webchat/api/v1.2/messages?_uid={chat_login_info['user']['uid']}&_v={api_version}"
 
     header = {
         "authorization": "Bearer " + chat_login_info['token'],
         "content-type": "text/plain;charset=UTF-8",
         "user-agent": user_agent,
-        "x-s": helper.get_security_hash(f"/messages?_uid={chat_login_info['user']['uid']}&_v=4.7.0",
+        "x-s": helper.get_security_hash(f"/messages?_uid={chat_login_info['user']['uid']}&_v={api_version}",
                                                                     str(chat_login_info['version'])),
         "x-v": str(chat_login_info['version'])
     }

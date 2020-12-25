@@ -14,7 +14,7 @@ describe:
 from . import BaseScriptApplication, \
     check_login, user_login, \
     logging, appcation_logger, get_simple_order_ids, get_compact_order_list_by_order_ids, \
-    json, messages, chat_login, utils
+    json, messages, chat_login, api_version
 
 import uuid
 import time
@@ -65,17 +65,6 @@ class ExpeditingApplication(BaseScriptApplication):
     # 向买家发起催付
     def expediting(self, login_info, country):
         for order_and_buyer in self.order_and_buyer_info:
-            message_req_data = {
-                "request_id": str(uuid.uuid1()),
-                "to_id": int(order_and_buyer),
-                "type": "text",
-                "content": {"text": self.expediting_content},
-                "text": self.expediting_content,
-                "chat_send_option": {
-                    "force_send_cancel_order_warning": False,
-                    "comply_cancel_order_warning": False
-                }
-            }
             chat_login_info = None
             if login_info['account'] in self.user_chat_login_info.keys():
                 chat_login_info = self.user_chat_login_info[login_info['account']]
@@ -88,6 +77,18 @@ class ExpeditingApplication(BaseScriptApplication):
             count = 100
 
             while True:
+                message_req_data = {
+                    "request_id": str(uuid.uuid1()),
+                    "to_id": int(order_and_buyer),
+                    "type": "text",
+                    "content": {"text": f"{self.expediting_content}{count}"},
+                    "text": self.expediting_content,
+                    "chat_send_option": {
+                        "force_send_cancel_order_warning": False,
+                        "comply_cancel_order_warning": False
+                    }
+                }
+
                 msg_res = messages(message_req_data, country, chat_login_info, login_info['cookies'])
 
                 if not msg_res:
@@ -169,7 +170,7 @@ class ExpeditingApplication(BaseScriptApplication):
 
         chat_login_req_data = {
             "_uid": F"0-{login_info['login_result']['id']}",
-            "_v": "4.7.0"
+            "_v": api_version
         }
 
         chat_login_res = chat_login(chat_login_req_data, country, login_info['cookies'])
