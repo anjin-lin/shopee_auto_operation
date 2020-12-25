@@ -76,14 +76,14 @@ Demo1 name：<font size=2 >View Application List (查看应用列表)</font>
 
 cli command (执行命令参数): python main.py apps
 
-![image](doc\img\view_application_list.png "View Application List")
+![image](doc/img/view_application_list.png "View Application List")
 
 Demo2 name：<font size=2 >Unpaid Order Expediting (未付款订单催付)</font>
 
 cli command (执行命令参数): python main.py -a account -p password -c country -app 2
 
-![image](doc\img\expediting.png "expediting")
-![image](doc\img\send_expenditing.png "expediting chat")
+![image](doc/img/expediting.png "expediting")
+![image](doc/img/send_expenditing.png "expediting chat")
 
 ### ADD Custom Application(添加自定义应用)
 中文:
