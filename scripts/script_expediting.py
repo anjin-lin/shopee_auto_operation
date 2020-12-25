@@ -29,7 +29,7 @@ class ExpeditingApplication(BaseScriptApplication):
     def __init__(self):
         self.order_and_buyer_info = {}
         self.user_chat_login_info = {}
-        self.expediting_content = "你TMD快点付钱啊！穷逼!!! 臭傻逼!!!"
+        self.expediting_content = "Hello, you have unpaid orders, please pay in time, we will ship the goods as soon as possible after your payment, thank you"
 
     def run(self, args_opt):
 
@@ -81,7 +81,7 @@ class ExpeditingApplication(BaseScriptApplication):
                     "request_id": str(uuid.uuid1()),
                     "to_id": int(order_and_buyer),
                     "type": "text",
-                    "content": {"text": f"{self.expediting_content}{count}"},
+                    "content": {"text": f"{self.expediting_content}"},
                     "text": self.expediting_content,
                     "chat_send_option": {
                         "force_send_cancel_order_warning": False,
@@ -103,6 +103,7 @@ class ExpeditingApplication(BaseScriptApplication):
                                                              f"买家：{order_and_buyer}"
                                                              f"成功发起催付:{msg_res.text}")
                 print(f"向买家: {order_and_buyer} 成功发起催付......")
+
                 count -= 1
 
                 if count <= 0:
